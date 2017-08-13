@@ -1,0 +1,19 @@
+{
+  "name": "webpack-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack -v",
+    "webpack:hello": "webpack ./src/hello.js ./dist/hello.bundle.js",
+    "webpack:css": "webpack ./src/main.js ./dist/main.bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.4",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.4"
+  }
+}
