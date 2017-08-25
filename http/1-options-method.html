@@ -3,23 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <style>
+    .container .request,.container .response{
+      width: 30%;
+    }
+  </style>
 </head>
 <body>
-<button id='ajaxBtn'>get ajax</button>
+  <div class='container' id='container1'>
+    <button>get ajax</button>
+    <div class='request'></div>
+    <div class='response'></div>
+  </div>
   <script>
   function id (id) {
     return document.getElementById(id)
   }
-  function ajax(method, url, headers){
+  function ajax(method, url, headers, callback, container){
     console.log('method:' + method, '\nurl:' + url,'\nheaders:', headers);
+    var requestDom;
+    var responseDom;
+    if (container) {
+      requestDom = container.querySelector('.request')
+      responseDom = container.querySelector('.response')
+    }
     var xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
-    xhr.send('name=test')
+    console.dir(xhr)
+    xhr.onreadystatechange = function(){
+      responseDom.innerText = xhr.getAllResponseHeaders();
+      if (callback) {
+        callback()
+      }
+    }
+    if (headers) {
+      for(var i in headers) {
+        xhr.setRequestHeader(i, headers[i])
+      }
+    }
+    xhr.send()
   }
 
-  var btn = id('ajaxBtn');
-  btn.addEventListener('click', function(){
-    ajax('get', '/', {});
+  var co = id('btn1');
+  var container1 = id('container1');
+  btn1 = container1.querySelector('button')
+  btn1.addEventListener('click', function(){
+    ajax('get', '/', {}, null, container1);
   });
 
 
