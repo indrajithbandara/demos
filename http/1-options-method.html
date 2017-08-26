@@ -20,7 +20,10 @@
     return document.getElementById(id)
   }
   function ajax(method, url, headers, callback, container){
-    console.log('method:' + method, '\nurl:' + url,'\nheaders:', headers);
+    console.group('Request Start!');
+    console.log('method:' + method);
+    console.log('url:' + url);
+    console.log('headers:', headers);
     var requestDom;
     var responseDom;
     if (container) {
@@ -42,6 +45,7 @@
       }
     }
     xhr.send()
+    console.groupEnd()
   }
 
   var co = id('btn1');
